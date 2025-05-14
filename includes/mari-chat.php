@@ -1,2 +1,2 @@
 <?php
-// Chat placeholder
+// Chat UI coming soon

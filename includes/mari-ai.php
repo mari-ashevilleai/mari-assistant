@@ -1,2 +1,2 @@
 <?php
-// AI integration placeholder
+// OpenAI API integration placeholder

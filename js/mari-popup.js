@@ -1,1 +1,1 @@
-// JS placeholder for future popup
+// Front-end chat popup script placeholder

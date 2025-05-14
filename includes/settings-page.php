@@ -1,2 +1,2 @@
 <?php
-// Settings page placeholder
+// Settings and configuration
