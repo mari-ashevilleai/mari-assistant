@@ -1,2 +1,1 @@
-<?php
-// Placeholder
+// Future enhancements here
