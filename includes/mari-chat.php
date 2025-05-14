@@ -1,2 +1,2 @@
 <?php
-// Chat interface functions
+// Chat placeholder

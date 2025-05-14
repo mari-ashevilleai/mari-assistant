@@ -3,7 +3,7 @@
  * Plugin Name: Mari Assistant
  * Plugin URI: https://github.com/mari-ashevilleai/mari-assistant
  * Description: Elite AI Assistant for Asheville AI Solutions. Self-updating via GitHub.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Asheville AI Solutions
  * Author URI: https://ashevilleaisolutions.com
  * License: GPL2
@@ -19,7 +19,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/mari-ai.php';
 require_once plugin_dir_path(__FILE__) . 'includes/settings-page.php';
 
 function mari_enqueue_scripts() {
-    wp_enqueue_script('mari-popup', plugin_dir_url(__FILE__) . 'js/mari-popup.js', array('jquery'), '1.2.1', true);
+    wp_enqueue_script('mari-popup', plugin_dir_url(__FILE__) . 'js/mari-popup.js', array('jquery'), '1.2.2', true);
     wp_enqueue_style('mari-style', plugin_dir_url(__FILE__) . 'css/mari-style.css');
     wp_localize_script('mari-popup', 'mari_ajax_obj', array('ajax_url' => admin_url('admin-ajax.php')));
 }

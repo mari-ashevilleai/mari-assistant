@@ -1,1 +1,1 @@
-// Mari JS placeholder for popup
+// JS placeholder for future popup
