@@ -1,1 +1,3 @@
-<?php // Future display of saved logs ?>
+<?php
+// Placeholder for future enhancements
+// No output here — safe for include()
