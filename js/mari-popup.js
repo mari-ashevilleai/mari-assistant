@@ -1,4 +1,6 @@
 jQuery(document).ready(function($){
+    let chatMemory = [];
+
     setTimeout(function(){
         const chatUI = `<div id="mari-popup">
             <div id="mari-header">Hi, I'm Mari 👋</div>
@@ -10,20 +12,32 @@ jQuery(document).ready(function($){
         </div>`;
         $('body').append(chatUI);
 
-        $('#mari-send').click(function(){
+        function sendMessage() {
             const input = $('#mari-input').val();
             $('#mari-log').append(`<div><strong>You:</strong> ${input}</div>`);
+            chatMemory.push({ role: "user", content: input });
+
             $.post(mari_ajax_obj.ajax_url, {
                 action: 'mari_get_response',
                 prompt: input
             }, function(res){
                 if(res.success){
                     $('#mari-log').append(`<div><strong>Mari:</strong> ${res.data}</div>`);
+                    chatMemory.push({ role: "assistant", content: res.data });
                 } else {
-                    $('#mari-log').append(`<div><strong>Mari:</strong> I hit a snag.</div>`);
+                    $('#mari-log').append(`<div><strong>Mari:</strong> Something went wrong.</div>`);
                 }
             });
+
             $('#mari-input').val('');
+        }
+
+        $('#mari-send').click(sendMessage);
+        $('#mari-input').keypress(function(e){
+            if(e.which == 13){
+                sendMessage();
+                return false;
+            }
         });
     }, 6000);
 });

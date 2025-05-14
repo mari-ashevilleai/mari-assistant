@@ -22,6 +22,10 @@
 }
 #mari-input {
     width: 70%;
+    color: #000;
+}
+#mari-input::placeholder {
+    color: #000 !important;
 }
 #mari-send {
     width: 25%;
