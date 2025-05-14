@@ -1,3 +1,1 @@
-=== Mari Assistant ===
-Version: 1.2.7
-License: GPLv2 or later
+Mari Assistant v1.2.8

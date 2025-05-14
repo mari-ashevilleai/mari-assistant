@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 300px;
+    width: 320px;
     background: #fff;
     border: 2px solid #444;
     border-radius: 8px;
@@ -10,6 +10,11 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     font-family: sans-serif;
     z-index: 9999;
+}
+#mari-face {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 8px;
 }
 #mari-header {
     font-weight: bold;
@@ -21,12 +26,12 @@
     margin-bottom: 8px;
 }
 #mari-input {
-    width: 70%;
+    width: 65%;
     color: #000;
 }
 #mari-input::placeholder {
     color: #000 !important;
 }
-#mari-send {
-    width: 25%;
+#mari-send, #mari-email {
+    width: 15%;
 }

@@ -1,1 +1,1 @@
-// Future enhancements here
+<?php // Future display of saved logs ?>
