@@ -1,0 +1,2 @@
+<?php
+// Chat interface functions
