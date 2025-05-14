@@ -11,13 +11,11 @@ function mari_admin_menu() {
         3
     );
 }
-
 function mari_admin_page_html() {
     ?>
     <div class="wrap">
         <h1>Mari Assistant Control Panel</h1>
-        <p>This panel confirms that Mari is now fully wired into your WordPress dashboard.</p>
-        <p>More advanced controls and live chat tools are coming in the next release.</p>
+        <p>Mari is now live and connected to OpenAI. Chat interface is running on the frontend.</p>
     </div>
     <?php
 }

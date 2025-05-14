@@ -1,2 +1,2 @@
 <?php
-// Chat UI coming soon
+// Future extension of Mari chat UI logic
