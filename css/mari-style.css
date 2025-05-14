@@ -20,6 +20,9 @@
     width: 60%;
     color: #000;
 }
+#mari-input::placeholder {
+    color: #000;
+}
 #mari-send, #mari-email {
     width: 18%;
 }
