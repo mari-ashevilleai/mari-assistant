@@ -1,1 +1,0 @@
-// Mari JS placeholder for popup
