@@ -1,1 +1,1 @@
-<?php // Settings registration ?>
+<?php // API key settings placeholder ?>

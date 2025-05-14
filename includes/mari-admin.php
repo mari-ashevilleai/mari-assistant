@@ -1,1 +1,1 @@
-<?php echo 'Mari Admin';
+<?php echo '<div class="wrap"><h1>Mari Assistant Control Panel</h1><p>Mari v1.2.9 running with avatar-style layout.</p></div>'; ?>

@@ -1,1 +1,1 @@
-<?php // AI logic placeholder ?>
+<?php // AI logic handled via mari-ai.php ?>

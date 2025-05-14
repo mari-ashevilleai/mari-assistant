@@ -3,8 +3,6 @@ jQuery(document).ready(function($){
 
     setTimeout(function(){
         const chatUI = `<div id="mari-popup">
-            <img src="${mari_ajax_obj.mari_image}" id="mari-face" />
-            <div id="mari-header">Hi, I'm Mari 👋</div>
             <div id="mari-body">
                 <div id="mari-log"></div>
                 <input id="mari-input" type="text" placeholder="Ask me anything..." />
@@ -14,13 +12,22 @@ jQuery(document).ready(function($){
         </div>`;
         $('body').append(chatUI);
 
-        chatMemory.forEach(msg => {
-            $('#mari-log').append(`<div><strong>${msg.role === 'user' ? "You" : "Mari"}:</strong> ${msg.content}</div>`);
-        });
+        function renderMessage(role, content) {
+            const avatar = role === "assistant" ? `<img src="${mari_ajax_obj.mari_image}" class="mari-avatar" />` : '';
+            const alignClass = role === "user" ? "user-bubble" : "mari-bubble";
+            $('#mari-log').append(`
+                <div class="mari-msg ${alignClass}">
+                    ${avatar}
+                    <div class="mari-text"><strong>${role === 'user' ? "You" : "Mari"}:</strong> ${content}</div>
+                </div>
+            `);
+        }
+
+        chatMemory.forEach(msg => renderMessage(msg.role, msg.content));
 
         function sendMessage() {
             const input = $('#mari-input').val();
-            $('#mari-log').append(`<div><strong>You:</strong> ${input}</div>`);
+            renderMessage("user", input);
             chatMemory.push({ role: "user", content: input });
             localStorage.setItem('mariChatMemory', JSON.stringify(chatMemory));
 
@@ -29,11 +36,11 @@ jQuery(document).ready(function($){
                 prompt: input
             }, function(res){
                 if(res.success){
-                    $('#mari-log').append(`<div><strong>Mari:</strong> ${res.data}</div>`);
+                    renderMessage("assistant", res.data);
                     chatMemory.push({ role: "assistant", content: res.data });
                     localStorage.setItem('mariChatMemory', JSON.stringify(chatMemory));
                 } else {
-                    $('#mari-log').append(`<div><strong>Mari:</strong> Something went wrong.</div>`);
+                    renderMessage("assistant", "Something went wrong.");
                 }
             });
 

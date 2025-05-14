@@ -1,1 +1,1 @@
-Mari Assistant v1.2.8
+Mari Assistant v1.2.9
