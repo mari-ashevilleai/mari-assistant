@@ -1,2 +1,0 @@
-<?php
-// Settings panel placeholder
