@@ -1,2 +1,0 @@
-<?php
-// AI integration placeholder
