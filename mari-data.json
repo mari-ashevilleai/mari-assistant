@@ -1,0 +1,48 @@
+{
+  "company": {
+    "name": "Asheville AI Solutions",
+    "founded": "November 2024",
+    "location": "Asheville, North Carolina",
+    "ownership": {
+      "owner": "David Blide",
+      "title": "Founder and Sole Operator",
+      "background": "US Navy Veteran"
+    },
+    "description": "Asheville AI Solutions is a locally based digital agency focused on providing high-performance AI-powered digital employees to small and medium-sized businesses. The company is veteran-owned and emphasizes integrity, honesty, and results."
+  },
+  "pricing": {
+    "starter": {
+      "label": "Starter",
+      "price": "$29/month"
+    },
+    "growth": {
+      "label": "Growth",
+      "price": "$59/month"
+    },
+    "pro": {
+      "label": "Pro",
+      "price": "$99/month"
+    },
+    "custom": {
+      "label": "Enterprise",
+      "price": "Custom"
+    }
+  },
+  "services": [
+    "AI Chat Agents (e.g., Mari)",
+    "Blog Post Automation (Cass)",
+    "Social Media Automation (Jess)",
+    "CRM Integration",
+    "Custom Digital Employee Development",
+    "Consulting on AI Adoption for Local Businesses"
+  ],
+  "support": {
+    "availability": "9am to 6pm EST, Monday through Friday",
+    "email": "info@ashevilleaisolutions.com"
+  },
+  "disclaimers": {
+    "results": "Asheville AI Solutions does not guarantee specific business outcomes.",
+    "api": "OpenAI API usage may incur token costs as defined in your plan.",
+    "crm": "Mari handles CRM automation directly \u2014 no junior agents will manage leads."
+  }
+}
