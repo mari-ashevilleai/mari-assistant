@@ -1,76 +1,72 @@
 document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-        document.getElementById("mari-popup").style.display = "block";
+    const input = document.getElementById("mari-input");
+    const chat = document.getElementById("mari-chat");
+    const MARI_LIMIT = 20;
+    let messageCount = parseInt(localStorage.getItem("chatCount") || "0");
 
-        const input = document.getElementById("mari-input");
-        const chat = document.getElementById("mari-chat");
-        let chatMemory = JSON.parse(localStorage.getItem("chatMemory")) || [];
+    const scrollChat = () => {
+        chat.scrollTop = chat.scrollHeight;
+    };
 
-        const scrollChat = () => {
-            chat.scrollTop = chat.scrollHeight;
-        };
+    input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            sendMariMessage();
+            event.preventDefault();
+        }
+    });
 
-        chatMemory.forEach(pair => {
-            chat.innerHTML += `<div><strong>You:</strong> ${pair.q}</div><div><strong>Mari:</strong> ${pair.a}</div>`;
+    window.sendMariMessage = function () {
+        const userInput = input.value.trim();
+        if (!userInput) return;
+
+        chat.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
+
+        if (messageCount >= MARI_LIMIT) {
+            const scheduleLink = "https://ashevilleaisolutions.com/13792-2/";
+            const capReply = `Whew! We’ve been chatting up a storm. If you’d like to keep the conversation going or dive deeper, I can introduce you to a specialist who never runs out of tokens. 😄<br><br><a href='${scheduleLink}' target='_blank' style='display:inline-block;background:#5c4ccf;color:#fff;padding:8px 12px;border-radius:5px;text-decoration:none;font-weight:bold;'>Schedule Now</a>`;
+            chat.innerHTML += `<div><strong>Mari:</strong> ${capReply}</div>`;
             scrollChat();
-        });
+            return;
+        }
 
-        input.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                sendMariMessage();
-                event.preventDefault();
-            }
-        });
+        fetch('/wp-content/plugins/mari-assistant/mari-data.json')
+            .then(response => response.json())
+            .then(data => {
+                let reply = null;
+                const q = userInput.toLowerCase();
 
-        window.sendMariMessage = async function () {
-            const userInput = input.value.trim();
-            if (!userInput) return;
-
-            chat.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
-            chat.innerHTML += `<div><strong>Mari:</strong> <em>Typing...</em></div>`;
-            scrollChat();
-
-            try {
-                const response = await fetch('/wp-json/mari/v1/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: userInput })
-                });
-
-                const data = await response.json();
-                let reply = data.reply || "(No response)";
-
-                // Force override if scheduling keyword is present
-                if (/schedule|consult|call|meeting/i.test(userInput)) {
-                    reply = `If you click below, you can choose a date and time that is convenient for you.<br>
-                    <a href="https://ashevilleaisolutions.com/13792-2/" target="_blank" style="
-                        display:inline-block;
-                        margin-top:8px;
-                        background:#5c4ccf;
-                        color:#fff;
-                        padding:8px 12px;
-                        border-radius:5px;
-                        text-decoration:none;
-                        font-weight:bold;
-                    ">Schedule Now</a>`;
+                if (q.includes("who owns") || q.includes("owner")) {
+                    reply = data.ownership;
+                } else if (q.includes("founded") || q.includes("start")) {
+                    reply = "Asheville AI Solutions was founded in " + data.founded + ".";
+                } else if (q.includes("pricing") || q.includes("cost")) {
+                    reply = data.pricing;
+                } else if (q.includes("services") || q.includes("what do you offer")) {
+                    reply = "We offer: " + data.services.join(", ");
+                } else if (q.includes("who are you") || q.includes("your name")) {
+                    reply = "I'm Mari, your AI assistant here at Asheville AI Solutions!";
                 }
 
-                chat.innerHTML = chat.innerHTML.replace('<div><strong>Mari:</strong> <em>Typing...</em></div>', `<div><strong>Mari:</strong> ${reply}</div>`);
-                chatMemory.push({ q: userInput, a: reply });
-                localStorage.setItem("chatMemory", JSON.stringify(chatMemory));
+                if (!reply) {
+                    reply = "(Simulated reply) I'm processing your request...";
+                }
+
+                chat.innerHTML += `<div><strong>Mari:</strong> ${reply}</div>`;
+                messageCount++;
+                localStorage.setItem("chatCount", messageCount.toString());
                 scrollChat();
-
-            } catch (err) {
-                chat.innerHTML += `<div><strong>Mari:</strong> I’m sorry I don’t have that information, but I can get an AI expert to contact you. What’s the best way to reach you?</div>`;
+            })
+            .catch(() => {
+                chat.innerHTML += "<div><strong>Mari:</strong> (Error loading data)</div>";
                 scrollChat();
-            }
+            });
 
-            input.value = "";
-        };
+        input.value = "";
+    };
 
-        window.emailMariTranscript = function () {
-            const body = chatMemory.map(pair => `You: ${pair.q}\nMari: ${pair.a}`).join("\n\n");
-            window.location.href = `mailto:info@ashevilleaisolutions.com?subject=Mari Chat Transcript&body=${encodeURIComponent(body)}`;
-        };
-    }, 6000);
+    const previousMemory = JSON.parse(localStorage.getItem("chatMemory")) || [];
+    previousMemory.forEach(pair => {
+        chat.innerHTML += `<div><strong>You:</strong> ${pair.q}</div><div><strong>Mari:</strong> ${pair.a}</div>`;
+    });
+    scrollChat();
 });
