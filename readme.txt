@@ -1,1 +1,0 @@
-Mari Assistant v1.2.9-b
