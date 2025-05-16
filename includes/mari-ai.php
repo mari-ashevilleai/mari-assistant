@@ -1,1 +1,0 @@
-<?php // AI logic handled via mari-ai.php ?>

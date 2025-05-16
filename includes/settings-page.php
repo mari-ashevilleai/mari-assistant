@@ -1,1 +1,0 @@
-<?php // API key settings placeholder ?>

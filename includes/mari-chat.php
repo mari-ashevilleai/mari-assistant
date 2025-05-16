@@ -1,1 +1,0 @@
-<?php // Chat log viewer or log handler ?>
