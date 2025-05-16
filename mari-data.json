@@ -1,10 +1,39 @@
 {
-  "owner": "David Blide",
-  "company": "Asheville AI Solutions",
+  "ownership": "Asheville AI Solutions is owned and operated solely by David Blide, a US Navy veteran. The company is based in Asheville, North Carolina and was founded in November 2024.",
   "founded": "November 2024",
   "location": "Asheville, North Carolina",
-  "status": "Mari is the only employee currently, with more digital agents arriving soon.",
-  "ownership": "Asheville AI Solutions is owned and operated solely by David Blide, a US Navy veteran.",
-  "pricing": "Please contact us directly for current pricing based on your website traffic and OpenAI usage.",
-  "disclaimer": "All AI responses are generated live and intended for customer service and sales support only."
+  "status": "Mari is currently the only digital employee. More agents are launching in the coming weeks.",
+  "plans": {
+    "starter": {
+      "price": "$29/month",
+      "limit": "Up to 500 messages/month",
+      "notes": "Ideal for low-traffic or testing-phase sites."
+    },
+    "growth": {
+      "price": "$59/month",
+      "limit": "Up to 2,000 messages/month",
+      "notes": "Great for small businesses using Mari regularly."
+    },
+    "pro": {
+      "price": "$99/month",
+      "limit": "Up to 5,000 messages/month",
+      "notes": "Best for high-traffic lead gen sites."
+    },
+    "custom": {
+      "price": "Contact us",
+      "limit": "5,000+ messages/month",
+      "notes": "Custom integrations and volume pricing."
+    }
+  },
+  "setup": {
+    "pluginInstall": "$250 one-time setup fee",
+    "agentTraining": "Custom persona setup is $150\u2013$500 based on complexity."
+  },
+  "addons": {
+    "crmIntegration": "CRM setup starts at $99",
+    "customAvatar": "$75\u2013$150 one-time",
+    "blogAgentCass": "$29\u2013$79/month",
+    "socialAgentJess": "TBD"
+  },
+  "scheduling": "https://ashevilleaisolutions.com/13792-2/"
 }
