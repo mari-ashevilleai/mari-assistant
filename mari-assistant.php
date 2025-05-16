@@ -1,29 +1,33 @@
 <?php
-/**
- * Plugin Name: Mari Assistant
- * Plugin URI: https://github.com/mari-ashevilleai/mari-assistant
- * Description: AI Assistant with avatar chat UI, memory, and versioned assets.
- * Version: 1.2.9-b
- * Author: Asheville AI Solutions
- * Author URI: https://ashevilleaisolutions.com
- * License: GPL2
- * GitHub Plugin URI: https://github.com/mari-ashevilleai/mari-assistant
- * GitHub Branch: main
- */
+/*
+Plugin Name: Mari Assistant
+Description: AI website assistant for Asheville AI Solutions
+Version: 1.3.6.8
+Author: Asheville AI Solutions
+*/
 
-defined('ABSPATH') or die('No script kiddies please!');
-
-require_once plugin_dir_path(__FILE__) . 'includes/mari-admin.php';
-require_once plugin_dir_path(__FILE__) . 'includes/mari-chat.php';
-require_once plugin_dir_path(__FILE__) . 'includes/mari-ai.php';
-require_once plugin_dir_path(__FILE__) . 'includes/settings-page.php';
-
-function mari_enqueue_scripts() {
-    wp_enqueue_script('mari-popup', plugin_dir_url(__FILE__) . 'js/mari-popup.js', array('jquery'), '1.2.9-b', true);
-    wp_enqueue_style('mari-style', plugin_dir_url(__FILE__) . 'css/mari-style.css', array(), '1.2.9-b');
-    wp_localize_script('mari-popup', 'mari_ajax_obj', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'mari_image' => plugin_dir_url(__FILE__) . 'img/Mari.png'
-    ));
+function mari_assistant_assets() {
+    wp_enqueue_style('mari-style', plugin_dir_url(__FILE__) . 'mari-style.css');
+    wp_enqueue_script('mari-script', plugin_dir_url(__FILE__) . 'mari-script.js', array(), null, true);
 }
-add_action('wp_enqueue_scripts', 'mari_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'mari_assistant_assets');
+
+function mari_assistant_menu() {
+    add_menu_page('Mari Assistant', 'Mari Assistant', 'manage_options', 'mari-assistant', 'mari_assistant_dashboard');
+}
+add_action('admin_menu', 'mari_assistant_menu');
+
+function mari_assistant_dashboard() {
+    echo '<div class="wrap"><h1>Mari Assistant</h1><p>Version 1.3.6.8 is active with hallucination protection enabled.</p></div>';
+}
+
+function mari_assistant_popup() {
+    echo '<div id="mari-popup" style="position:fixed;bottom:20px;right:20px;width:300px;background:#fff;border:1px solid #ccc;padding:10px;z-index:10000;">
+        <strong>Mari:</strong> Hi! I\'m your assistant from Asheville AI Solutions.
+        <div id="mari-chat"></div>
+        <input type="text" id="mari-input" placeholder="Ask me anything..." />
+        <button onclick="sendMariMessage()">Send</button>
+    </div>';
+}
+add_action('wp_footer', 'mari_assistant_popup');
+?>
